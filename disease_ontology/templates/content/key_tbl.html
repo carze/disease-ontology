@@ -1,0 +1,70 @@
+<!-- Ugly CSS hack -->
+<style type="text/css">
+    #key-content {
+        background: #fff;          
+        height: 100%;
+        padding: 6px 10px 8px 10px;
+    }
+
+    #tbl-arbor-key {
+        font: 11px/165% "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        text-align: left;
+        width: 100%;
+    }
+
+    #arbor-header {
+        font-size: 11px;
+        font-weight: bold;
+        color: #039;
+        border-bottom: 2px solid #6678B1;
+
+    }
+    #arbor-header th {
+        width: 80px;
+    }
+
+    #tbl-arbor-key td {
+        padding: 2px 0 2px 0;
+        border-bottom: 1px solid #CCC;
+    }
+    td {
+        vertical-align: middle;
+    }
+    .key-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+</style>
+
+<!-- The contents that will go into our ExtJS popup key -->
+<div id="key-content">
+    <table id="tbl-arbor-key">
+            <thead id="arbor-header">
+                <tr>
+                    <th>Node Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><img class="key-img" alt="Target Node" src="/media/images/target_node.png" /></td>
+                <td>The target node of the visualization</td>
+            </tr>
+            <tr>
+                <td><img class="key-img" alt="Node with children/parents" src="/media/images/node_with_relations.png" /></td>
+                <td>A node which has children or parents. Can be clicked to display children/parents.</td>
+            </tr>                                
+            <tr>
+                <td><img class="key-img" alt="Leaf node" src="/media/images/leaf_node.png" /></td>
+                <td>A leaf node</td>
+            </tr>
+            <tr>
+                <td><img class="key-img" alt="Node with 5 or more children/parents" src="/media/images/compact_node.png" /></td>
+                <td>A node which has more than 5 children/parents is compacted to avoid cluttering the visualization space. This node can be clicked and one or many children/parents can be expanded out of it</td>
+            </tr>
+        </tbody>
+    </table>                            
+</div>

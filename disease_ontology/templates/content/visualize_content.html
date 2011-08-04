@@ -1,0 +1,24 @@
+{% extends "content/content_base.html" %}
+{% block content %}
+    <body>
+        <input type="hidden" id="doid" value="{{ doid }}" />
+        <input type="hidden" id="name" value="{{ name }}" />
+        <div id=mask>
+            <canvas id="viewport" width="800" height="652"></canvas>
+            <a rel="#popupChildren" id="hiddenLink">Hidden YA!</a>
+            <div id="popupChildren" class="overlay list_filter">
+                <a class=close id="close_corner_button"></a>
+                <p id="childrenArea">
+                    <h1>Select terms to add to the graph:</h1>
+                    <input id="nodeFilter" type="text"/>
+                    <div id="children-buttons">
+                        <button class="select-button search-button" id="button-some">Select</button>
+                        <button class="select-button search-button" id="button-all">Select All</button>
+                        <button class="select-button search-button close" id="button-none">Select None</button>
+                    </div>                            
+                </p>
+            </div>
+            <button type="submit" id="key-arbor" class="search-button">Key</button>
+        </div>
+    
+{% endblock %}

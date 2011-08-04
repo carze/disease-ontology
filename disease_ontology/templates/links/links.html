@@ -1,0 +1,13 @@
+{% extends "base_page.html" %}
+{% block content %}
+    <h2>Links</h2>
+    <p>Below are a list of useful resources that pertain to the Disease Ontology</p>
+
+    <div id="links-div">
+        <ul class="default">
+            {% for link in links %}
+            <li class="links-list"><a href="{{ link.url }}">{{ link.title }}</a> - {{ link.description }}</li>
+            {% endfor %}
+        </ul>
+    </div>       
+{% endblock %}

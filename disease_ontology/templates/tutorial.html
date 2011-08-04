@@ -1,0 +1,71 @@
+{% extends "base_page.html" %}
+{% block content %}
+    <h2>Tutorial</h2>
+        <p>The Disease Ontology browser can be partitioned into three areas, the Search Panel, Navigation Panel and the Content Panel. Each of these sections serves a unqiue purpose in presenting data from the Disease Ontology:</p>
+        <img alt="Disease Ontology main page breakdown" class="default" src="/media/images/main-overlay.png" />
+        <ul class="default tutorial">
+            <li><b>Search Panel</b> - Allows for the user to create basic or advanced queries to search the Disease Ontology</li>
+            <li><b>Navigation Panel</b> - Allows the user to explore the ontology in a hierachical fashion</li>
+            <li><b>Content Panel</b> - Houses all Disease Ontology search results, metadata and visualizations</li>
+        </ul>
+
+        <p>The Content Panel takes an approach of presenting all information on one page. Search results, metadata and visualizations of terms are all opened in tabs within the Content Panel and allow for the user to save tabs containing pertainent information while still exploring the rest of the ontology. </p>
+
+    <h3>Navigation</h3>
+        <img alt="Navigation Panel" class="default" src="/media/images/tree-browse-1.png" />
+        <p>The Disease Ontology may be navigated through the use of the Navigation tree found on the main page. The ontology can be walked from here in a hierachical fashion, moving from relation to relation.</p>
+        <p>Nodes may be expanded by either double-clicking on a term or selecting the arrow to the right of the term.</p>
+
+    <h3>Basic Search</h3>
+        <img alt="Basic Search" class="default" src="/media/images/basic-search.png" />
+        <p>Our basic search functionality is as simple as typing in a term to search the ontology on and hitting the 'Go' button or pressing the 'Enter' key. The basic search field searches over every field in our ontology so our query term can be a DOID, name, synonym, xref, or a block of text that could be found in the definition field.</p>
+
+    <h3>Advanced Search</h3>
+        <img alt="Advanced Search" class="default" src="/media/images/adv-search-button.png" />
+        <p>The advanced search functionality on the Disease Ontology web browser can be executed via selecting the 'Advanced Search' button on the main page.</p>
+
+        <img alt="Advanced Search overlay" class="default" src="/media/images/adv-search-1.png" />
+        <p>The Advanced Search dialog has several components which can be utilized to create a targeted and complex query:</p>
+        <ul class="default tutorial">
+            <li class="default"><b>1</b> - The Match type drop-down allows for matching any (boolean OR) of the advanced search fields or matching all (boolean AND) of the search fields.</li>
+            <li class="defualt"><b>2</b> - The field type drop-down allows for searching of a specific field in the Disease Ontology. Choices include: Name, Synonym, Subset, DOID, Alternate ID, Definition and Xref</li>
+            <li><b>3</b> - Any value for the specified field should be typed in this input box.</li>
+            <li><b>4</b> - The 'Add New Field' button allows for new input fields to be added to the query to create multi-faceted queries.</li>
+            <li><b>5</b> - Submits the query to search through the Disease Ontology</li>
+        </ul>
+
+        <img alt="Advanced Search Example" class="default" src="/media/images/adv-search-2.png" />
+        <p>An example of a query searching through multiple fields above. The 'X' icon circled in the above picture can be used to remove fields from the query</p>
+
+    <h3>Search Results</h3>
+        <img alt="Search Results" class="default" src="/media/images/search-results-1.png" />
+        <p>Once a query has been submitted search results will be opened in a new tab in the main content window. If more than 30 terms are returned from the query the search results will be paginated with navigation between pages located at the bottom of the search results window. Clicking on any of the search results rows will load that terms metadata in the active Metadata panel.</p>
+    
+    <h3>Viewing Metadata</h3>
+        <img alt="Metadata panel" class="default" src="/media/images/metadata-panel-1.png" />
+        <p>Any term that is selected either via search results or the navigation tree will populate its metadata in the active Metadata panel. The fields present for this term in the Disease Ontology will be visible in the panel. Any external links found in the definition text will be present and selectable. Xrefs who have the appropriate resource available will also be selectable to open in a new page. Lastly, if the term has a parent it is also selectable to open in a new Metadata panel.</p>
+
+        <p>Additionally, new Metadata panels may be opened by clicking on the 'Open new metadata tab' button found in the Navigation pane:</p>
+        <img alt="Opening a new metadata panel" class="default" src="/media/images/metadata-panel-2.png" />
+        <p>When a new metadata panel is opened up it becomes the active panel and all future requests to display metadata will be routed to it. This allows for a user to save metadata windows while exploring new terms.</p>
+
+    <h3>Visualizing terms</h3>
+        <p id="ie-warning">** IMPORTANT ** - Visualization does not currently work in the Internet Explorer line of browsers.</p>
+
+        <img alt="Visualization button" class="default" src="/media/images/visualization-button.png" />
+        <p>Visualization of a term can be accessed through the 'Visualize' button that is found on any terms metadata page. Clicking on this button will open a new tab that will display the immediate relations of this term (both parents and children if they exist).</p>
+
+        <img alt="Visualizing Terms" class="default" src="/media/images/visualization-panel-1.png" />
+        <p>Visualization of a term demonstrates all relationships to and from a target term and allows the user to further explore these relationships by traversing across any parents or children.</p> 
+        <p>The node types in the visualization are denoted by different colors:</p>
+        <ul class="default tutorial">
+            <li><span id="arbor-target">Red</span> nodes indicate the target term from which the visualization was launched.</li>
+            <li><span id="arbor-expandable">Green</span> nodes indicate that parent(s) or children exist for this node and can be viewed by clicking on the node</li>
+            <li><span id="arbor-leaf">Gray</span> nodes indicate a leaf node.</li>
+            <li><span id="arbor-compact">Orange</span> nodes are created when five or more parent/children exist. The number in this orange node indicates how many parents/children are present</li>
+        </ul>
+
+        <p>Clicking on one of these orange nodes will bring up a dialog box to allow the user to select one or many parent(s)/children to display on the visualization canvas:</p>
+        <img alt="Compact Node overlay" class="default" src="/media/images/visualization-panel-2.png" />
+        <p>From here the user can filter the children/parents to add to the graph (via the 'Type to Filter' input) or use the 'Select All' button to select all nodes to be added to the canvas. Some care should be taken when adding several nodes to the canvas as, depending on the computer being used to access the Disease Ontology web browser, upwards of 50+ nodes can cause slowdown.</p>
+{% endblock %}

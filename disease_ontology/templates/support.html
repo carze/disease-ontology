@@ -1,0 +1,30 @@
+{% extends "base_page.html" %}
+{% block content %}
+    <h2>Support</h2>
+
+    <h3>Contact Us</h3>
+    <p>Any comments, suggestions or requests for help can reach the Disease Ontology staff at the following address: admin[@]disease-ontology.org.<br /> Alternatively any questions about functionality or requests for support concerning an aspect of the website may be directed to the Disease Ontology mailing list:</p>
+    <div class="default support"><a href="https://lists.sourceforge.net/lists/listinfo/diseaseontology-discussion">Disease Ontology Mailing list</a></div>
+
+
+    <h3>Tutorial</h3>
+    <p class="default">An overview of how to use the Disease Ontology browser can be found <a class="default" href="{% url tutorial %}">here</a></p>
+
+    <h3>FAQ</h3>
+    <div class="faq-group">
+        <span>What is the Disease Ontology browser website?</span>
+        <p>The Disease Ontology browser is a web application that allows for exploration of the Disease Ontology. It allows for full text searching over the whole ontology as well as visualization of relations between nodes.</p>
+    </div>    
+    <div class="faq-group">
+        <span>How often is the Disease Ontology browser updated?</span>
+        <p>The Disease Ontology browser is updated every night to match the latest Disease Ontology website.</p>
+    </div>    
+    <div class="faq-group">
+        <span>What do the "Match Any" or "Match All" mean in the Advanced Search menu</span>
+        <p>This option specifies how to combine any advanced searches; "Match Any" is equivalent to a boolean OR search while "Match All" is equivalent to a boolean AND search</p>
+    </div>    
+    <div class="faq-group">
+        <span>Why does the visualization functionality not work in Interet Explorer</span>
+        <p>Internet Explorer does not support the HTML5 standard canvas element. The Disease Ontology browser makes use of the canvas element to visualize our relations between terms and thus will not work in Internet Explorer.</p>
+    </div>    
+{% endblock %}

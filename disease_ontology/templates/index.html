@@ -1,0 +1,52 @@
+{% extends "base_page.html" %}
+{% block content %}
+    <form id="search" action="">
+            <div id="search-bar">
+                <input id="search-field" class="validate[required,funcCall[doCheckLuceneQueryValue]] search-field input" type="text" name="q" value="Search Ontology..." onfocus="if (this.value == 'Search Ontology...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search Ontology...';}" />
+                <input id="search-button" class="search-button submit-button" type="submit" value="Go »" />
+                <span class="button-divider">|</span>
+                <span id="adv-search-span"><a id="adv-search" rel="#adv-search-div">Advanced Search »</a></span>
+            </div>
+
+            <div id="adv-search-div" class="search-overlay">
+                <a class="close" id="close_corner_button"><img alt="Close advanced search overlay" src="/media/images/close.png" /></a>
+                <div id="adv-search-wrap">
+                    <h2>Advanced Search</h2>
+
+                    <div id="adv-search-fields">
+                        <input type="hidden" id="adv_search_bool" name="adv_search" value="False"/>
+                        
+                        <label for="lucene-operator">Match: </label>
+                        <select id="lucene-operator" name="operator">
+                            <option value="AND">ALL</option>
+                            <option value="OR">ANY</option>
+                        </select>
+
+                        <div id="search-field-container-1" class="dynamic">
+                            <select id="field-combo-1" name="field-1" class="dynamic-field field-selector">
+                                <option value="name" selected="selected">Name</option>
+                                <option value="synonym">Synonym</option>
+                                <option value="definition">Definition</option>
+                                <option value="subset">Subset</option>
+                                <option value="term\ id">DOID</option>
+                                <option value="alt_id">Alternate ID</option>
+                                <option value="xref">Xrefs</option>
+                            </select>
+                            <input type="text" id="field-val-1" name="value-1" value="" class="validate[required,funcCall[doCheckLuceneQueryValue]] dynamic-field field-text input" />
+                            <img alt="" src="/media/images/spacer.gif" id="spacer" title="Remove Field" />
+                        </div>
+
+                    </div>
+                </div>                    
+                <div id="adv-search-footer">
+                    <div id="add-field-container">
+                        <input id="add-field" class="search-button" type="button" value="Add New Field" />
+                    </div>
+                    <div id="submit-cancel-buttons">
+                        <input id="adv-search-submit" class="search-button submit-button" type="button" value="Go »" />
+                    </div>                        
+                </div>
+            </div>
+    </form>
+    <div id="search-results"></div>
+{% endblock %}                    

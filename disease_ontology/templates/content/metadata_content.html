@@ -1,0 +1,71 @@
+{% extends "content/content_base.html" %}
+{% load term_filters %}
+
+{% block content %}
+    <body class="term-body">
+        <div id="meta-container">
+            <a href="#" class="button" id="arbor_button">
+                <span id="{{ neo4j_id }}_{{ term_name }}" class="visualize">Visualize</span>
+            </a>
+
+            <table id ="metadata">
+                <colgroup>
+                    <col class="key-col">
+                </colgroup>
+                <thead id="meta-header">
+                    <tr>
+                        <th id="tbl-header">Metadata</th>
+                        <th></th>
+                    </tr>                    
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="field-label">DOID</td>
+                        <td class="meta-val">{{ term_id }}</td>
+                    </tr>
+                    <tr>
+                        <td class="field-label">Name</td>
+                        <td class="meta-val">{{ term_name }}</td>
+                    </tr>
+                    {% if term_definition %}
+                        <tr>
+                            <td class="field-label">Definition</td>
+                            <td class="meta-val">{{ term_definition|format_definition_metadata|urlize|url_target_blank }}</td>
+                        </tr>
+                    {% endif %}
+                    {% for name, value in secondary_meta %}
+                        <tr>
+                            <td class="field-label">{{ name|cap }}</td>
+                            <td>
+                                {% for attr in value %}
+                                    {% if name == "synonyms" %} 
+                                        <p class="attr-row">{{ attr|format_synonym_metadata }}</p>
+                                    {% else %}{% if name == "xrefs" %}
+                                        <p class="attr-row">{{ attr|xref_url_link }}</p>
+                                    {% else %}
+                                        <p class="attr-row">{{ attr }}</p>
+                                    {% endif %}                                    
+                                    {% endif %}
+                                {% endfor %}
+                            </td>     
+                        <tr>
+                    {% endfor %}
+        
+                    {% if relationships %}
+                        <tr>
+                            <td class="field-label">Relationships</td>
+                            <td>
+                            {% for type, name, id in relationships %}
+                                <p class='attr-row'>{{ type }} <a href="" class="rel-link" id={{ id }}>{{ name }}</a></p>
+                            {% endfor %}
+                            </td>
+                         </tr>
+                    {% endif %}
+
+                </tbody>
+            </table>         
+        </div>
+        <p></p>
+        <p></p>
+    </body>        
+{% endblock %}

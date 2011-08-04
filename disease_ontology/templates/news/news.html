@@ -1,0 +1,6 @@
+{% extends "base_page.html" %}
+{% block content %}
+        {% for news in news_list %}
+            {% include 'news/news_post.html' %}
+        {% endfor %}
+{% endblock %}

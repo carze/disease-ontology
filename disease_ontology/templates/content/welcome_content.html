@@ -1,0 +1,18 @@
+{% extends "content/content_base.html" %}
+{% block content %}
+    <body>
+        <div id="col-one">
+            <div id="info">
+                <p class="site-info">The <span class="logo">Disease Ontology</span> has been developed as a standardized ontology for human disease with the purpose of providing the biomedical community with consistent, reusable and sustainable descriptions of human disease terms, phenotype characteristics and related medical vocabulary disease concepts through collaborative efforts of researchers at Northwestern University, Center for Genetic Medicine and the University of Maryland School of Medicine, Institute for Genome Sciences.</p>
+                <p class="site-info">The Disease Ontology semantically integrates disease and medical vocabularies through extensive cross mapping of DO terms to MeSH, ICD, NCI’s thesaurus, SNOMED and OMIM.</p>
+            </div>
+            <!-- Add top 5 news posts here -->
+            {% for news in news_list %}
+                {% include 'news/news_post.html' %}
+            {% endfor %}
+        </div>           
+        <div id="news-footer" class="sticky-footer">
+            <a href="{% url news %}" target=_>See all news »</a>
+        </div>            
+    </body>
+{% endblock %}

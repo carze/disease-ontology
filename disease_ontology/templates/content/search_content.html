@@ -1,0 +1,61 @@
+{% extends "content/content_base.html" %}
+{% block content %}
+    <body>
+        <!-- If the total number of hits is 0 we want to display message -->
+        {% if total_hits == 0 %}
+            <p id="no-results">No results found</p>
+        {% else %}
+            <div id="wrap">
+                <div id="main">
+                    <table id="results-table" border=0>
+                        <caption id='total_results_caption'>Displaying results {{ lower_bound }} - {{ upper_bound }} of <span id='tot_res_num'>{{ total_hits }}</span></caption>
+                        <tr>
+                            <th>DOID</th>
+                            <th>Name</th>
+                        </tr>
+                        {% for result in results %}
+                            <tr id="{{ result.0 }}_{{ result.1 }}" class="search-row">
+                                <td class="tbl-doid">{{ result.0 }}</td>
+                                <td class="tbl-name">{{ result.1 }}</td>
+                            </tr>                        
+                        {% endfor %}
+                    </table>
+                </div>                    
+
+            </div>            
+        {% endif %}
+
+        <!-- Pagingation controls to allow us to jump between pages of our search results -->
+        {% if total_pages != 1 %}
+            <!-- Search Navigation Footer -->
+            <div id="pagination" class="sticky-footer">
+                <ul>
+                    <li><a href="/search?{{ serialized_params }}&page=1">First</a></li>
+
+                    <!-- If we are not on page 1 of our pagination we want to link out to our previous page -->
+                    {% if previous_page %}
+                        <li class="previous"><a href="/search?{{  serialized_params }}&page={{ previous_page }}">« Previous</a></li>
+                    {% else %}
+                        <li class="previous-off">« Previous</li>
+                    {% endif %}
+
+                    {% for i in page_range %}
+                        {% if i == current_page %}
+                            <li class="active">{{ i }}</li>
+                        {% else %}
+                            <li><a href="/search?{{ serialized_params}}&page={{ i }}">{{ i }}</a></li>                    
+                        {% endif %}
+                    {% endfor %}
+            
+                    <!-- If we have more than one page we want to make our next button active -->
+                    {% if next_page %}
+                        <li class="next"><a href="/search?{{ serialized_params }}&page={{ next_page }}">Next »</a></li>
+                    {% else %}
+                        <li class="next-off">Next »</li>
+                    {% endif %}
+                    <li><a href="/search?{{ serialized_params }}&page={{ total_pages }}">Last</a></li>
+                </ul>
+            </div>
+        {% endif %}            
+    </body>
+{% endblock %}   

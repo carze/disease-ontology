@@ -1,0 +1,24 @@
+{% extends "content/content_base.html" %}
+{% block content %}
+    <body>
+        <div class="content-tab">
+            <h2>Metadata Panel</h2>
+            <p>Metadata content can be display in this panel via one of the following methods:</p>
+
+            <ul id="meta-slider">
+                <li>
+                    <img src="/media/images/tree_nav_metadata.png" />
+                    <p>Nodes selected via the tree navigation</p>
+                </li>
+                <li>
+                    <img src="/media/images/search_select_metadata.png" />
+                    <p>Terms selected from the search results page</p>
+                </li>
+                <li>
+                    <img src="/media/images/rel_metadata.png" />
+                    <p>Terms selected via the relationship field</p>
+                </li>
+            </ul>
+        </div>            
+    </body>
+{% endblock %}

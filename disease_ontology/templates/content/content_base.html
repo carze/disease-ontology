@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+    <title>{{ title }}</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <!-- Some conditional stylesheeting here to deal with IE madness -->
+
+    
+    <!--[if IE]>
+        <link rel="stylesheet" type="text/css" href="/media/css/content.ie.css" media="screen,projection" />
+    <![endif]-->
+
+
+    <!--[if !IE]><!-->
+        <link rel="stylesheet" type="text/css" href="/media/css/content.css" media="screen,projection" />
+    <!--<![endif]-->
+
+        <link rel="stylesheet" type="text/css" href="/media/css/bx_styles.css" media="screen,projection" />
+
+        <script src='/media/javascript/jquery.js' type='text/javascript'></script>
+        <script src='/media/javascript/jquery.tools.min.js' type='text/javascript'></script>
+        <script src='/media/javascript/jquery.bxSlider.min.js' type='text/javascript'></script>
+        <script src='/media/javascript/content.js' type='text/javascript'></script>
+        
+        {% if content_type == "visual" %}
+            <link rel="stylesheet" type="text/css" href="/media/css/jquery.loadmask.css" media="screen,projection" />
+            <link rel="stylesheet" type="text/css" href="/media/css/jquery.toChecklist.min.css" media="screen,projection" />
+
+            <script src='/media/javascript/arbor.js' type='text/javascript'></script>
+            <script src='/media/javascript/arbor-tween.js' type='text/javascript'></script>
+            <script src='/media/javascript/arbor-graphics.js' type='text/javascript'></script>
+            <script src='/media/javascript/do_arbor.js' type='text/javascript'></script>
+            <script src='/media/javascript/jquery.loadmask.min.js' type='text/javascript'></script>
+            <script src='/media/javascript/jquery.toChecklist.js' type='text/javascript'></script>
+            <script src='/media/javascript/jquery.liveFilter.js' type='text/javascript'></script>
+        {% endif %}
+    </head>
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>
