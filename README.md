@@ -1,12 +1,15 @@
-h1. Disease Ontology
+Disease Ontology
+================
 
 The Disease Ontology semantically integrates disease and medical vocabularies through extensive cross mapping of DO terms to MeSH, ICD, NCI’s thesaurus, SNOMED and OMIM.
 
-h2. Installation
+Installation
+------------
 
 Coming soon....
 
-h2. License (MIT)
+License (MIT)
+-------------
 
 Copyright (c) 2011 Abizer Nasir
 
