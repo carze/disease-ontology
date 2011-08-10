@@ -220,7 +220,8 @@ a.button{
     z-index: 999999;
 }
 a:hover.button {
-    color: #0066CC;
+    color: #336699;
+    background: url(/media/images/button-hover.png);
 }
 
 .visualize {
