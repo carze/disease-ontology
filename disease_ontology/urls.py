@@ -5,7 +5,7 @@ from django.views.generic.simple import direct_to_template, redirect_to
 from disease_ontology.apps.news.views import news
 from disease_ontology.apps.links.views import links
 from disease_ontology.apps.content.views import (welcome_content, 
-                metadata_content, search_content, visualize_content)
+                metadata_content, search_content, visualize_content, contact)
 
 admin.autodiscover()
 
@@ -24,7 +24,7 @@ urlpatterns = patterns('',
     url(r'^downloads/$', direct_to_template, {
         'template': 'downloads.html',
         'extra_context': {
-            'title': 'Disease Ontology - Institute for Genome Sciences Downloads',
+            'title': 'Disease Ontology - Institute for Genome Science - Downloads',
             'ext': False
         }
     }, "downloads"),
@@ -32,21 +32,29 @@ urlpatterns = patterns('',
     url(r'^about/$', direct_to_template, {
         'template': 'about.html',
         'extra_context': {
-            'title': 'Disease Ontology - Institute for Genome Sciences About',
+            'title': 'Disease Ontology - Institute for Genome Sciences - About',
             'ext': False
         }
     }, "about"),
     url(r'^support/$', direct_to_template, {
         'template': 'support.html',
         'extra_context': {
-            'title': 'Disease Ontology - Institute for Genome Sciences Support',
+            'title': 'Disease Ontology - Institute for Genome Sciences - Support',
             'ext': False
         }
     }, "support"),
+    url(r'^contact/$', contact, name="contact"),
+    url(r'^contact/thanks/$', direct_to_template, {
+        'template': 'thanks.html',
+        'extra_context': {
+            'title': 'Disease Ontology - Institute for Genome Sciences - Contact',
+            'ext': False
+        }
+    }, "thanks"),
     url(r'^tutorial/$', direct_to_template, {
         'template': 'tutorial.html',
         'extra_context': {
-            'title': 'Disease Ontology - Institute for Genome Sciences Tutorial',
+            'title': 'Disease Ontology - Institute for Genome Sciences - Tutorial',
             'ext': False
         }
     }, "tutorial"),
@@ -54,7 +62,7 @@ urlpatterns = patterns('',
     (r'^blank_results/$', direct_to_template, {
         'template': 'content/blank_results.html',
         'extra_context': {
-            'title': 'Disease Ontology - Institute for Genome Sciences Links',
+            'title': 'Disease Ontology - Institute for Genome Sciences - Links',
             'ext': False,
         }
     }),

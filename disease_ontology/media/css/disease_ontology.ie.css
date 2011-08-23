@@ -1051,3 +1051,86 @@ iframe {
     font-weight: bold;
     color: orange;
 }
+
+/** Contact page **/
+#contact-fields {
+    margin: 10px;
+}
+
+#contact-fields label {
+    font-weight: bold;
+}
+
+#contact-fields input, select {
+    margin-top: 2px;
+}
+
+.field-wrapper input, select {
+    border: 1px solid black;
+    width: 210px;
+}
+
+.errorlist li {
+    font-weight: bold;
+    color: red;                
+}
+
+#contact-fields textarea {
+    border: 1px solid black;
+}
+
+#contact-fields input {
+    margin-left: -1px;
+}
+
+#contact-fields select {
+    margin-left: -2px;
+    width: 220px;
+}
+
+#contact_submit {
+    margin-left: 10px ! important;
+}
+
+.field-wrapper {
+    margin: 10px;
+}
+
+#label_captcha {
+    margin-left: 7px;
+}
+
+#contact-fields #error_div {
+    position: relative;
+    border: 1px solid black;
+    width: 650px;
+    margin-left: 7px;
+    background: red;
+    font-weight: bold;
+    color: white;
+}
+
+#error_div #error_close_button {
+    position: absolute;
+    top: 1px;
+    left: 635px;
+}
+
+#error_div ul {
+    margin: 5px 0 2px 5px;
+}
+
+#recaptcha {
+    margin: 0 0 5px 6px;
+}
+
+#thanks_div {
+    margin-bottom: 300px;
+    font-size: 13px;
+}
+
+#captcha_error {
+    margin: -5px 0 5px 10px;
+    font-weight: bold;
+    color: red;
+}

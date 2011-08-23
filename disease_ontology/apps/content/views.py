@@ -1,35 +1,44 @@
-##
-# Django views to render any of the tab-based content on the DO webpage.
-#
-
 import logging
 import sys
 
 from neo4jdo import Neo4jDO
 from do_lucene_search import search_lucene_index
 from math import ceil, floor
+from recaptcha.client import  captcha
 
-from django.http import HttpResponse
+from django import forms
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import Context
 from django.template.loader import get_template
 from django.shortcuts import render_to_response
 from django.conf import settings
+from django.core.mail import send_mail
+from django.views.decorators.csrf import csrf_exempt
 
 from disease_ontology.apps.news.models import NewsPost
 
-__author__ = "Cesar Arze"
-__copyyright__ = "Institute for Genome Science - University of Maryland School of Medicine"
-__license__ = "MIT"
-__version__ = "1.0"
-__maintainer__ = "Cesar Arze"
-__email__ = "carze@som.umaryland.edu"
-
 logger = logging.getLogger(__name__)
+
+class ContactForm(forms.Form):
+    """
+    A forms to get in touch with an administrator for the Disease Ontology
+    website
+    """
+    FEEDBACK_CHOICES = (
+        ('Comment', 'Comment'),
+        ('Suggestion', 'Suggestion'),
+        ('Bug', 'Bug'),
+    )
+    feedbackType = forms.ChoiceField(widget=forms.Select, choices=FEEDBACK_CHOICES, label="Feedback Type:")
+    senderName = forms.CharField(label="Name:")
+    senderEmail = forms.EmailField(label="Email:")
+
+    message = forms.CharField(label="Message:", widget=forms.Textarea)
 
 def welcome_content(request):
     """
     Our welcome tab panel which will contain news and update 
-    information
+    informsation
     """
     template = get_template('content/welcome_content.html')
 
@@ -99,7 +108,7 @@ def search_content(request):
     (results, total_hits) = search_lucene_index(request.GET, index_dir, index_metadata, records_per_page)
     
     # Need to setup a couple variables to house the next page and previous pages (if they exist)
-    # of search results, a string containing a serialized representation of our form parameters
+    # of search results, a string containing a serialized representation of our forms parameters
     # and the total number of results pages
     current_page = int(request.GET.get('page', 1))
     total_pages = ceil(float(total_hits) / records_per_page) if total_hits > 0 else 1
@@ -167,3 +176,42 @@ def visualize_content(request, doid, name):
 
     output = template.render(variables)
     return HttpResponse(output)
+
+def validate_captcha(request, form):
+    """
+    Validates the captcha challenge found on the contact form
+    """
+    response = captcha.submit(
+        request.POST.get('recaptcha_challenge_field'),
+        request.POST.get('recaptcha_response_field'),
+        settings.RECAPTCHA_PRIVATE_KEY,
+        request.META.get('REMOTE_ADDR', None)
+    )        
+
+    return response.is_valid
+
+@csrf_exempt
+def contact(request):
+    valid_captcha = True
+
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        valid_captcha = validate_captcha(request, form)
+    
+        if form.is_valid() and valid_captcha:
+            feedback_type = form.cleaned_data['feedbackType']
+            sender_name = form.cleaned_data['senderName']
+            sender_email = form.cleaned_data['senderEmail']
+            message = form.cleaned_data['message']
+            subject = "disease-ontology.org %s - %s" % (feedback_type, sender_name)
+
+            send_mail(subject, message, sender_email, [x[1] for x in settings.ADMINS])
+            return HttpResponseRedirect('/contact/thanks/')
+    else:                            
+        form = ContactForm()
+        
+    return render_to_response('support_contact.html', {
+        'form': form,
+        'recaptcha_pub_key': settings.RECAPTCHA_PUBLIC_KEY,
+        'valid_captcha': valid_captcha,
+    })

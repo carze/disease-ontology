@@ -1,0 +1,63 @@
+{% extends "base_page.html" %}
+{% block content %}
+    <h2>Contact</h2>
+    <div id="contact-fields">
+        <form method="post" action="{% url contact %}">
+            {{ form.non_field_errors }}
+            <div class="field-wrapper">
+                <label id="label_feedback" for="id_feedbackType">Feedback Type:</label>
+                <br />
+                {{ form.feedbackType }}
+                {{ form.feedbackType.errors }}
+            </div>            
+            <div class="field-wrapper">
+                <label id="label_name" for="id_senderName">Name:</label>
+                <br />
+                {{ form.senderName }}
+                {{ form.senderName.errors }}
+            </div>            
+            <div class="field-wrapper">
+                <label id="label_email" for="id_senderEmail">Email:</label>
+                <br />
+                {{ form.senderEmail }}
+                {{ form.senderEmail.errors }}
+            </div>            
+            <div class="field-wrapper">
+                <label id="label_message" for="id_message">Message:</label>
+                {{ form.message }}
+                {{ form.message.errors }}
+            </div>            
+
+            <!-- Recaptcha code -->
+            <div id="recaptcha">
+                <label id="label_captcha">To prevent spam and abuse, please enter the text shown in the window below:</label>
+                <script type="text/javascript"
+                   src="http://www.google.com/recaptcha/api/challenge?k={{ recaptcha_pub_key }}">
+                </script>
+                <noscript>
+                   <div id="no_js_recaptcha">
+                       <object data="http://www.google.com/recaptcha/api/noscript?k={{ recaptcha_pub_key }}"
+                           type="text/html" height="300" width="500"></object><br />
+                       <!--[if IE]>
+                      <iframe src="http://www.google.com/recaptcha/api/noscript?k={{ recaptcha_pub_key }}"
+                                  height="300" width="500" frameborder="0"></iframe><br>
+                       <![endif]-->                           
+                       <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                       </textarea>
+                       <input type="hidden" name="recaptcha_response_field"
+                           value="manual_challenge" />
+                   </div>                           
+                </noscript>
+            </div>
+            {% if not valid_captcha %}
+                <ul id="captcha_error">
+                    <li>Invalid captcha code entered.</li>
+                </ul>
+            {% endif %}
+            
+            <div>
+                <input id="contact_submit" class="search-button" type="submit" value="Submit" />
+            </div>                    
+        </form>
+    </div>
+{% endblock %}

@@ -119,4 +119,11 @@ $(document).ready(function() {
             $(".warning").animate({top: "0"}, 500);
         }
     }        
+
+    // Handle the closing of our error div on the contact page
+    if ($("#error_div")) {
+        $("#error_close_button").click(function() {
+            $("#error_div").remove();                
+        });
+    }
 });

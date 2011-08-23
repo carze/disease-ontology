@@ -4,17 +4,17 @@ import os
 import ConfigParser
 
 ## All our config settings should be read in from a config file found 
-## in our root <document_root>/conf folder
+## in our root htdocs/conf folder
 config_file = os.path.abspath(os.path.dirname(__file__) + 
                               "/../conf/disease_ontology.conf")
 config = ConfigParser.RawConfigParser()
 config.read(config_file)
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Cesar Arze', 'carze@som.umaryland.edu'),
 )
 
 MANAGERS = ADMINS
@@ -204,3 +204,7 @@ RECORDS_PER_PAGE=19
 # Number of pages we should display in our pagination menu. This is a sliding 
 # window that will increase as the user moves up or down the pages.
 PAGE_WINDOW = 10
+
+# Our recaptcha public and private API key
+RECAPTCHA_PUBLIC_KEY = config.get('CAPTCHA', 'PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = config.get('CAPTCHA', 'PRIVATE_KEY')
